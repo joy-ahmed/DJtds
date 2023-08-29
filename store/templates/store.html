@@ -1,10 +1,10 @@
 {% include "header.html" %}
 
 <div class="container" style="margin-top: 100px">
-  <h1>Hello DJ!</h1>
+  <h1>Data table</h1>
   <hr />
-  <table class="table">
-    <thead>
+  <table class="table table-bordered">
+    <thead class="table-dark">
       <tr>
         <th scope="col">id</th>
         <th scope="col">Task</th>
@@ -13,16 +13,25 @@
         <th scope="col">Delete</th>
       </tr>
     </thead>
-    {% for obj in all_tasks %}
     <tbody>
-      <tr>
-        <th scope="row">{{obj.id}}</th>
+      {% for obj in all_tasks %} {% if obj.done %}
+      <tr class="table-success">
+        <td>{{obj.id}}</td>
         <td>{{obj.task}}</td>
-        <td>{{obj.done}}</td>
+        <td>Done</td>
         <td>Edit</td>
         <td>Delete</td>
       </tr>
+      {% else %}
+      <tr>
+        <td>{{obj.id}}</td>
+        <td>{{obj.task}}</td>
+        <td>Not Done</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </tr>
+
+      {% endif %} {% endfor %}
     </tbody>
-    {% endfor %}
   </table>
 </div>
